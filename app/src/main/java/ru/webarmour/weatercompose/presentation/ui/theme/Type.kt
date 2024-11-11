@@ -1,4 +1,4 @@
-package ru.webarmour.weatercompose.ui.theme
+package ru.webarmour.weatercompose.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
