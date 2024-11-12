@@ -2,10 +2,11 @@ package ru.webarmour.weatercompose.presentation.details
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.mvikotlin.core.instancekeeper.getStore
-import com.arkivanov.mvikotlin.core.store.create
 import com.arkivanov.mvikotlin.extensions.coroutines.labels
 import com.arkivanov.mvikotlin.extensions.coroutines.stateFlow
-import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -13,11 +14,11 @@ import ru.webarmour.weatercompose.domain.entity.City
 import ru.webarmour.weatercompose.presentation.extensions.componentScope
 import javax.inject.Inject
 
-class DefaultDetailsComponent @Inject constructor(
-    private val onBackClicked:()->Unit,
-    private val city: City,
+class DefaultDetailsComponent @AssistedInject constructor(
     private val storeFactory: DetailsStoreFactory,
-    componentContext: ComponentContext,
+    @Assisted("onBackClicked") private val onBackClicked: () -> Unit,
+    @Assisted("city") private val city: City,
+    @Assisted("componentContext") componentContext: ComponentContext,
 ) : DetailsComponent, ComponentContext by componentContext {
 
     private val store = instanceKeeper.getStore { storeFactory.create(city) }
@@ -25,8 +26,8 @@ class DefaultDetailsComponent @Inject constructor(
 
     init {
         scope.launch {
-            store.labels.collect{
-                when(it){
+            store.labels.collect {
+                when (it) {
                     DetailsStore.Label.ClickBack -> onBackClicked()
                 }
             }
@@ -42,5 +43,14 @@ class DefaultDetailsComponent @Inject constructor(
 
     override fun onClickChangeFavouriteStatus() {
         store.accept(DetailsStore.Intent.ClickChangeFavouriteStatus)
+    }
+
+    @AssistedFactory
+    interface Factory {
+        fun create(
+            @Assisted("onBackClicked") onBackClicked: () -> Unit,
+            @Assisted("city") city: City,
+            @Assisted("componentContext") componentContext: ComponentContext,
+        ): DefaultDetailsComponent
     }
 }
