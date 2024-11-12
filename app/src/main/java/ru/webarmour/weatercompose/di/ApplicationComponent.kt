@@ -3,6 +3,7 @@ package ru.webarmour.weatercompose.di
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
+import ru.webarmour.weatercompose.presentation.MainActivity
 
 
 @ApplicationScope
@@ -14,6 +15,8 @@ import dagger.Component
 )
 interface ApplicationComponent {
 
+
+    fun inject(mainActivity: MainActivity)
 
     @Component.Factory
     interface Factory {
