@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">WeaterCompose</string>
+    <string name="add_favourite">Добавить в избранное</string>
     <string name="search">Поиск</string>
     <string name="upcoming">Прогноз погоды</string>
+    <string name="empty_text_result">Пустое поле ввода</string>
+    <string name="something_went_wrong">Что-то пошло не так..</string>
 </resources>
