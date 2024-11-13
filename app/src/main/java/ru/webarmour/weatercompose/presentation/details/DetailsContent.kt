@@ -253,13 +253,17 @@ private fun RowScope.SmallWeatherCard(weather: Weather) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = weather.tempC.tempToFormattedString())
+            Text(
+                text = weather.tempC.tempToFormattedString(),
+                color = MaterialTheme.colorScheme.onBackground
+            )
             GlideImage(
                 modifier = Modifier.size(48.dp),
                 model = weather.conditionUrl,
                 contentDescription = null,
             )
-            Text(text = weather.date.formattedShortDate())
+            Text(text = weather.date.formattedShortDate(),
+                color = MaterialTheme.colorScheme.onBackground)
         }
     }
 }

@@ -127,7 +127,7 @@ private fun CityCard(
                 .clickable {
                     onClick()
                 }
-                .padding(24.dp)
+                .padding(16.dp)
         ) {
             when (val weatherState = cityItem.weatherState) {
 
@@ -145,7 +145,7 @@ private fun CityCard(
                     )
                     Text(
                         modifier = Modifier
-                            .align(Alignment.BottomStart)
+                            .align(Alignment.CenterStart)
                             .padding(bottom = 24.dp),
                         text = weatherState.tempC.tempToFormattedString(),
                         color = MaterialTheme.colorScheme.background,
@@ -161,7 +161,7 @@ private fun CityCard(
                 }
             }
             Text(
-                modifier = Modifier.align(Alignment.BottomStart),
+                modifier = Modifier.align(Alignment.BottomStart).padding(bottom = 12.dp),
                 text = cityItem.city.name,
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.background

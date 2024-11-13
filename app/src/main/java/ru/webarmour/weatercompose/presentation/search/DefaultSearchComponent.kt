@@ -45,7 +45,7 @@ class DefaultSearchComponent @AssistedInject constructor(
         }
     }
     @OptIn(ExperimentalCoroutinesApi::class)
-    override val mode: StateFlow<SearchStore.State> = store.stateFlow
+    override val model: StateFlow<SearchStore.State> = store.stateFlow
 
     override fun changeSearchQuery(query:String) {
         store.accept(SearchStore.Intent.ChangeSearchQuery(query))
